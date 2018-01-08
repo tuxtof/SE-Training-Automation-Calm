@@ -136,8 +136,8 @@ the **Overview** pane.
 Because AppService package install script use a macro to get IP of DBService  @@{DBService.address}@@ ) you will see a orange dependency arrow between the two service.
 During save Calm analyze the Blueprint to try to automaticly detect dependency between components.
 
-**Part 3: Scale­out PHP and Load Balancer ** 
-********************************************
+**Part 3: Scale­out PHP and Load Balancer** 
+******************************************
 
 In this part we’re going to finally finish the provisioning blueprint.  
 
@@ -148,14 +148,8 @@ In this part we’re going to finally finish the provisioning blueprint.  
 3. Change \ **Number of
    replicas **\ under \ **Deployment Config **\ from 1 to 2.  
 
-     
-
 This service will now deploy 2 VMs with the same configuration rather
 than just 1
-
-    |image4|
-
-    |image5|
 
 We’ve now added redundancy or load balancing capacity to the PHP server,
 but need something to actually to the load balancing.
@@ -167,10 +161,6 @@ but need something to actually to the load balancing.
 2. Remember to configure the NIC and credentials at the bottom
 
 Under **Package** configure the following install script
-
-|image6|
-
-|image7|
 
 Under **Package** configure the following install script:
 
@@ -290,18 +280,6 @@ users are a member of it.
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
-.. |image4| image:: ./media/image5.png
-   :width: 2.93056in
-   :height: 3.05375in
-.. |image5| image:: ./media/image6.png
-   :width: 2.92083in
-   :height: 3.07181in
-.. |image6| image:: ./media/image7.png
-   :width: 3.84792in
-   :height: 5.08403in
-.. |image7| image:: ./media/image4.png
-   :width: 4.98125in
-   :height: 0.46933in
 .. |image8| image:: ./media/image8.png
    :width: 6.50000in
    :height: 4.26389in
