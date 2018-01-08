@@ -31,17 +31,17 @@ Service created from Lab #1 Simple Blueprint service (MySQL).
    and configure the rest of the application as we did with the DB
    server
 
-   +----------------------+------------------------------------------------------+
+   +----------------------+----------------------------------------------------+
    | VM Name              | training-app-<<yourName>>                          |
-   +----------------------+------------------------------------------------------+
-   | Image                | CentOS                                               |
-   +----------------------+------------------------------------------------------+
-   | vCPUs                | 1                                                    |
-   +----------------------+------------------------------------------------------+
-   | Cores per vCpu       | 2                                                    |
-   +----------------------+------------------------------------------------------+
-   | Memory               | 2 GiB                                                |
-   +----------------------+------------------------------------------------------+
+   +----------------------+----------------------------------------------------+
+   | Image                | CentOS                                             |
+   +----------------------+----------------------------------------------------+
+   | vCPUs                | 1                                                  |
+   +----------------------+----------------------------------------------------+
+   | Cores per vCpu       | 2                                                  |
+   +----------------------+----------------------------------------------------+
+   | Memory               | 2 GiB                                              |
+   +----------------------+----------------------------------------------------+
 
 Be sure to scroll down, add a NIC on **training** network and configure the credentials.
 
@@ -60,7 +60,8 @@ Install script with the following script:
    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
    yum install -y nginx php56w-fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
    mkdir -p /var/www/laravel
-   echo "server {
+   tee /etc/nginx/conf.d/laravel.conf << EOF
+   server {
          listen   80 default_server;
          listen [::]:80 default_server ipv6only=on;
          root /var/www/laravel/public/;
@@ -68,7 +69,7 @@ Install script with the following script:
          location / {
              try_files \$uri \$uri/ /index.php?\$query_string;
          }
-         # pass the PHP scripts to FastCGI server listening on/var/run/php5­fpm.sock
+         # pass the PHP scripts to FastCGI server listening on/var/run/php5-fpm.sock
          location ~ \.php$ {
                   try_files \$uri /index.php =404;
                   fastcgi_split_path_info ^(.+\.php)(/.+)\$;
@@ -77,7 +78,8 @@ Install script with the following script:
                   fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
                   include fastcgi_params;
          }
-   }" | tee /etc/nginx/conf.d/laravel.conf
+   }
+   EOF
    sed -i 's/80 default_server/80/g' /etc/nginx/nginx.conf
    if `grep "cgi.fix_pathinfo" /etc/php.ini` ; then
       sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /etc/php.ini
@@ -94,7 +96,7 @@ Install script with the following script:
       chmod +x /usr/local/bin/composer
    fi
 
-   git clone @@{App_git_link}@@ /var/www/laravel
+   git clone https://github.com/ideadevice/quickstart-basic.git /var/www/laravel
    sed -i 's/DB_HOST=.*/DB_HOST=@@{DBService.address}@@/' /var/www/laravel/.env
    cd /var/www/laravel
    composer install
