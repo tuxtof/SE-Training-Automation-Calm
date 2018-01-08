@@ -10,7 +10,7 @@
 
 1. AOS 5.5.x (or higher)
 2. AHV (for 5.5)
-3. Using 1 HPOC (If using more then one, do the same on both)
+3. Using 1 HPOC
 
 
 **Connectivity & HPOC Info:**
@@ -82,25 +82,25 @@ Start by logging in and accepting the EULA.
 
 1. Go to Storage --> Table
 2. Delete the "default-container-xxxxx"
-3. Create a new Storage Container called "Bootcamp"
+3. Create a new Storage Container called "training"
 
 
 **Step 2 — Setup user VM network**
 **********************************
 
-1. Go to VM --> Table
+1. Go to VM
 2. Select "Network Config"
 3. Select "User VM Interfaces"
 4. Select "Create Network"
 
 +-------------------------------------+------------------------------------+
-| Name                                |          bootcamp                  |
+| Name                                |          training                  |
 +-------------------------------------+------------------------------------+
 | VLAN ID                             |          0                         |
 +-------------------------------------+------------------------------------+
 | Enable IP Address Management        |          Checked                   |
 +-------------------------------------+------------------------------------+
-| Network IP Address / Prefix Length  |          10.x.x.0/23               |
+| Network IP Address / Prefix Length  |          10.x.x.0/25               |
 +-------------------------------------+------------------------------------+
 | Gateway                             |          10.x.x.1                  |
 +-------------------------------------+------------------------------------+
@@ -144,60 +144,13 @@ Verify Image Configurations has what you need for your Workshop
 **Step 5 — UI Settings**
 ************************
 
-Change Session Timeout Values
+Change UI Session Values
 
 1. Go To Gear --> UI Settings
-2. Session Timeout for Current User = 30 minutes
-3. Default Session Timeout for all Users = 2 hours
-4. Session Timeout override = Allow unlimited
-5. Click **Save**
-
-
-**Step 6 — Setup Authentication and Role Mapping (If Active Directory is needed for your Workshop)**
-****************************************************************************************************
-
-**Note:** Setup & Configure a Domain Controller (Active-Directory_ ) before completing this section.
-
-1. Go To Gear --> Authentication
-2. Select **New Directory**
-
-+----------------------------+----------------------------------------+
-| Directory Type             |           Active Directory             |
-+----------------------------+----------------------------------------+
-| Name                       |           Bootcamp                     |
-+----------------------------+----------------------------------------+
-| Domain                     |           bootcamp.local               |
-+----------------------------+----------------------------------------+
-| Directory URL              |           ldap://10.x.x.40             |
-+----------------------------+----------------------------------------+
-| Service Account Name       |           administrator@bootcamp.local |
-+----------------------------+----------------------------------------+
-| Service Account Password   |           HPOC Password                |
-+----------------------------+----------------------------------------+
-
-3. Click on the yellow ! next to Bootcamp
-4. Click on the **Click Here** to go to the Role Mapping screen
-5. Click **New Mapping**
-
-+----------------------------+----------------------------------------+
-| Directory                  |           Bootcamp                     |
-+----------------------------+----------------------------------------+
-| LDAP Type                  |           group                        |
-+----------------------------+----------------------------------------+
-| Role                       |           Cluster Admin                |
-+----------------------------+----------------------------------------+
-| Values                     |           Bootcamp Users               |
-+----------------------------+----------------------------------------+
-
-6. Close the Role Mapping and Authentication windows
-7. Log out of Prism Element
-8. Log in as **user01@bootcamp.local**
-
-**Note:** If you are able to log in then you have completed Prism Element and AD setup
-
-
-
-
-
+2. Enable animated background particles = Unchecked
+3. Session Timeout for Current User = 30 minutes
+4. Default Session Timeout for all Users = 2 hours
+5. Session Timeout override = Allow unlimited
+6. Click **Save**
 
 .. _Active-Directory: ../active_directory/active_directory_setup.rst

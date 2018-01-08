@@ -238,7 +238,48 @@ add-users.ps1_ and add-users.csv_
 7. Open Active Directory User & Computers, and verify the users and group are there.
 
 
-**Note:** Now you can head back to the Prism_Element_Setup_, and configure Authentication and Roles.
+
+**Step 6 — Setup Authentication and Role Mapping (If Active Directory is needed for your Workshop)**
+****************************************************************************************************
+
+**Note:** Setup & Configure a Domain Controller (Active-Directory_ ) before completing this section.
+
+1. Go To Gear --> Authentication
+2. Select **New Directory**
+
++----------------------------+----------------------------------------+
+| Directory Type             |           Active Directory             |
++----------------------------+----------------------------------------+
+| Name                       |           Bootcamp                     |
++----------------------------+----------------------------------------+
+| Domain                     |           bootcamp.local               |
++----------------------------+----------------------------------------+
+| Directory URL              |           ldap://10.x.x.40             |
++----------------------------+----------------------------------------+
+| Service Account Name       |           administrator@bootcamp.local |
++----------------------------+----------------------------------------+
+| Service Account Password   |           HPOC Password                |
++----------------------------+----------------------------------------+
+
+3. Click on the yellow ! next to Bootcamp
+4. Click on the **Click Here** to go to the Role Mapping screen
+5. Click **New Mapping**
+
++----------------------------+----------------------------------------+
+| Directory                  |           Bootcamp                     |
++----------------------------+----------------------------------------+
+| LDAP Type                  |           group                        |
++----------------------------+----------------------------------------+
+| Role                       |           Cluster Admin                |
++----------------------------+----------------------------------------+
+| Values                     |           Bootcamp Users               |
++----------------------------+----------------------------------------+
+
+6. Close the Role Mapping and Authentication windows
+7. Log out of Prism Element
+8. Log in as **user01@bootcamp.local**
+
+**Note:** If you are able to log in then you have completed Prism Element and AD setup
 
 
 .. _Prism_Element_Setup: ../prism_element/prism_element_setup.rst
