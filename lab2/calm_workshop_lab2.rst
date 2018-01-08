@@ -9,14 +9,11 @@
 ****************
 
 Welcome to the Calm Hands-On-Lab - Intermediate Blueprint. What we’re
-going to do here is extend the previous basic blueprint:  
-
-|image0|
+going to do here is extend the previous basic blueprint.  
 
 The goal is to create a basic LAMP Stack (Linux Apache MySQL PHP). In
 this lab we’ll build on the previous simple service MySQL
-blueprint and evolve this into the multi-stack application you see
-above.
+blueprint and evolve this into an multi service application.
 
 **Part 2: Creating a Web Server**
 *********************************
@@ -58,7 +55,7 @@ Install script with the following script:
 .. code-block:: bash
 
    #!/bin/bash
-   
+
    yum -y install epel-release
    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
    yum install -y nginx php56w-fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
@@ -287,9 +284,6 @@ application.
 **NOTE:** In this lab, the only active project is **Default** and all
 users are a member of it.
 
-.. |image0| image:: ./media/image1.png
-   :width: 4.73125in
-   :height: 3.03056in
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
