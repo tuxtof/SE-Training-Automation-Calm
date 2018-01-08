@@ -96,7 +96,7 @@ Install script with the following script:
       chmod +x /usr/local/bin/composer
    fi
 
-   git clone https://github.com/ideadevice/quickstart-basic.git /var/www/laravel
+   git clone https://github.com/tuxtof/quickstart-basic.git /var/www/laravel
    sed -i 's/DB_HOST=.*/DB_HOST=@@{DBService.address}@@/' /var/www/laravel/.env
    sed -i 's/DB_DATABASE=.*/DB_DATABASE=@@{Database_name}@@/' /var/www/laravel/.env
    sed -i 's/DB_USERNAME=.*/DB_USERNAME=@@{Database_name}@@/' /var/www/laravel/.env
@@ -222,8 +222,7 @@ Under **Package** configure the following install script:
          backend servers-http
    EOF
 
-   sed -i 's/server host-/#server
-         host-/g' /etc/haproxy/haproxy.cfg
+   sed -i 's/server host-/#server host-/g' /etc/haproxy/haproxy.cfg
          hosts=$(echo "@@{AppService.address}@@" | sed 's/^,//' | sed 's/,$//' | tr "," "\n")
          port=80
          for host in $hosts do
