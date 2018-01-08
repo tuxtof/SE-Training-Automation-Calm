@@ -20,51 +20,25 @@
 Overview
 ********
 
-In this guide we will setup a Windows Domain Controller, and configure Active Directory Domain Services. We will also create 20 users and a bootcamp users group for them.
+In this guide we will setup a Windows Domain Controller, and configure Active Directory Domain Services. We will also create 20 users and a training users group for them.
 
 **Note:** You can do either of these depending on if you want to build from scratch or use the one deployed by the HPOC system.
 
-**Step 1a — Deploying the Windows 2012R2 Server from scratch**
-**************************************************************
-
-Do this step if you are deploying from a Widows 2012R2 ISO
-
-1. Go To VM --> Table
-2. Create VM
-3. Name = DC
-4. Description = bootcamp.local Domain Controller
-5. vCPUS = 2
-6. Cores = 1
-7. Memory = 4Gig
-8. Set First CDROM to use W2K12R2 ISO
-9. Add 80Gig Disk on Bootcamp Storage Container
-10. Add 2nd CDROM and set to use VirtIO drivers 1.0.1 ISO
-11. Add New NIC, and select the bootcamp network
-12. IP Address = 10.x.x.40
-13. Power on VM, and run through the Windows Installation
-14. Use the HPOC password as the Administrator password
-
-**Note:** Remember to select all 3 drivers from VirtIO disk when you are at the "Select Install Disk" section.
-
-
-**OR Do This**
-
-
-**Step 1b — Deploying the Windows 2012R2 Server from Pre-Deployed HPOC Image**
+**Step 1 — Deploying the Windows 2012R2 Server from Pre-Deployed HPOC Image**
 ******************************************************************************
 
 Do this step if you are using the Pre-Deployed Windows 2012R2 VM
 (These Images are deployed if you select Windows VMs during HPOC Reservation Process)
 
 1. Go To VM --> Table
-2. Select the **Windows 2012 VM** and click **Update**
-3. Change Name from "Windows 2012 VM" to "DC"
-4. Change Description to "bootcamp.local Domain Controller"
-5. Delete the Rx-Automation-Network NIC
-6. Add Bootcamp NIC
-7. IP Address = 10.x.x.40
+2. Select the **Windows 2012 VM** and click **Clone**
+3. Set name "DC"
+4. Delete the Rx-Automation-Network NIC
+5. Add training NIC
+6. IP Address = 10.x.x.40
+7. Save
 8. Power on VM
-9. Go through the configuration screens
+9. Launch Console and go through the configuration screens
 10. Use the HPOC password as the Administrator password
 
 
@@ -74,9 +48,10 @@ Do this step if you are using the Pre-Deployed Windows 2012R2 VM
 In This step we will configure the Windows OS settings we need before we install the AD Role
 
 1. Log into the DC VM
-2. Select **Local Server** from the left ribbon in Server Manager
-3. In the Properties Window, select the Ethernet settings
-4. Right click on Ethernet, and configure the IPV4 address with the following info
+2. Click Yes if you have a right ribbon with a network question
+3. Select **Local Server** from the left ribbon in Server Manager
+4. In the Properties Window, select the Ethernet settings
+5. Right click on Ethernet -> Properties , and configure the IPV4 Properties with the following info
 
 +------------+--------------------------------------------------------+
 | IP         |                                        10.x.x.40       |
@@ -90,9 +65,9 @@ In This step we will configure the Windows OS settings we need before we install
 | DNS 2      |                                        10.21.253.11    |
 +------------+--------------------------------------------------------+
 
-5. In the Properties Window, Make Sure Remote Desktop is "Enabled"
-6. In the Properties Window, Make Sure Windows Firewall is "Off"
-7. In the Properties Window, select Computer Name.
+5. In the Local Server Properties Window, Make Sure Remote Desktop is "Enabled"
+6. In the Local Server Properties Window, Make Sure Windows Firewall is "Off"
+7. In the Local Server Properties Window, select Computer Name -> Change.
 
 +----------------+----------------------------------------------------+
 | Computer Name  |                                    DC              |
@@ -113,7 +88,7 @@ In this step we will be installing Domain Services Role
 5. Select Default Server (DC) - Hit **Next**
 6. Select Active Director Domain Services
 7. Add Features - Hit **Next**
-8. Select AD DS - Hit **Next**
+8. In AD DS - Hit **Next**
 9. Confirmation - Hit **Install** (Check "Restart the destination server automatically if required")
 
 **Note:** Monitor the install, and select **Close** when you see the installation succeeded
@@ -130,7 +105,7 @@ In this step we will be configuring Active Directory for use by our Workshop
 4. Select "Add a new forest", Enter "Root domain name", and then click **Next**
 
 +-------------------+------------------------------------------------+
-| Root domain name  |                                bootcamp.local  |
+| Root domain name  |                                training.local  |
 +-------------------+------------------------------------------------+
 
 5. DSRM Password = HPOC Password - hit **Next**
@@ -146,13 +121,13 @@ In this step we will be configuring Active Directory for use by our Workshop
 **Step 5 — Adding Workshop Users & Group**
 ******************************************
 
-In this step we will run a powershell script that will create the "Bootcamp Users" AD group, and user01-user20
-(also adding them to the Bootcamp Users group)
+In this step we will run a powershell script that will create the "training Users" AD group, and user01-user20
+(also adding them to the training Users group)
 
 **Copy the contents of the following script and csv, and create the files on the Server in "C:\\scripts"**
 add-users.ps1_ and add-users.csv_
 
-1. Log into the DC VM
+1. Log into the DC VM with a Remote Desktop connection
 2. create a directory called "scripts" at the root of C:
 3. Create a directory called "logs" in "c:\\scripts"
 4. Copy over the add-users.ps1 and add-users.csv to "C:\\scripts"
@@ -171,8 +146,8 @@ add-users.ps1_ and add-users.csv_
 	$successUsers = @()
 	$VerbosePreference = "Continue"
 	$LogFolder = "c:\scripts\logs"
-	$GroupName = "Bootcamp Users"
-	$OU = "CN=Users, DC=BOOTCAMP,DC=LOCAL"
+	$GroupName = "training Users"
+	$OU = "CN=Users, DC=training,DC=LOCAL"
 
 	NEW-ADGroup -name $GroupName –GroupScope Global
 
@@ -209,7 +184,7 @@ add-users.ps1_ and add-users.csv_
 	$failedUsers |ForEach-Object {"$($b).) $($_)"; $b++} | out-file -FilePath  $LogFolder\FailedUsers.log -Force -Verbose
 	$successUsers | ForEach-Object {"$($a).) $($_)"; $a++} |out-file -FilePath  $LogFolder\successUsers.log -Force -Verbose
 
-5. Update the password in "c:\\scripts\\add-user.csv" to match the HPOC password
+5. Update the password in "c:\\scripts\\add-users.csv" to match the HPOC password
 
 .. code-block:: bash
 
@@ -236,50 +211,6 @@ add-users.ps1_ and add-users.csv_
 
 6. Open Powershell, and run the add-user.ps1
 7. Open Active Directory User & Computers, and verify the users and group are there.
-
-
-
-**Step 6 — Setup Authentication and Role Mapping (If Active Directory is needed for your Workshop)**
-****************************************************************************************************
-
-**Note:** Setup & Configure a Domain Controller (Active-Directory_ ) before completing this section.
-
-1. Go To Gear --> Authentication
-2. Select **New Directory**
-
-+----------------------------+----------------------------------------+
-| Directory Type             |           Active Directory             |
-+----------------------------+----------------------------------------+
-| Name                       |           Bootcamp                     |
-+----------------------------+----------------------------------------+
-| Domain                     |           bootcamp.local               |
-+----------------------------+----------------------------------------+
-| Directory URL              |           ldap://10.x.x.40             |
-+----------------------------+----------------------------------------+
-| Service Account Name       |           administrator@bootcamp.local |
-+----------------------------+----------------------------------------+
-| Service Account Password   |           HPOC Password                |
-+----------------------------+----------------------------------------+
-
-3. Click on the yellow ! next to Bootcamp
-4. Click on the **Click Here** to go to the Role Mapping screen
-5. Click **New Mapping**
-
-+----------------------------+----------------------------------------+
-| Directory                  |           Bootcamp                     |
-+----------------------------+----------------------------------------+
-| LDAP Type                  |           group                        |
-+----------------------------+----------------------------------------+
-| Role                       |           Cluster Admin                |
-+----------------------------+----------------------------------------+
-| Values                     |           Bootcamp Users               |
-+----------------------------+----------------------------------------+
-
-6. Close the Role Mapping and Authentication windows
-7. Log out of Prism Element
-8. Log in as **user01@bootcamp.local**
-
-**Note:** If you are able to log in then you have completed Prism Element and AD setup
 
 
 .. _Prism_Element_Setup: ../prism_element/prism_element_setup.rst

@@ -12,16 +12,6 @@
 2. AHV (for 5.5)
 
 
-**Connectivity Instructions:**
-******************************
-
-+--------------------------+------------------------------------------+
-| Prism Central IP         |                             Cluster IP   |
-+--------------------------+------------------------------------------+
-| Username                 |                             Cluster User |
-+--------------------------+------------------------------------------+
-| Password                 |                             Cluster Pass |
-+--------------------------+------------------------------------------+
 
 
 **Overview**
@@ -41,26 +31,25 @@ We will start by installing prism Central
 
 1. Click on **Register or create new** on the Prism Central Widget (On the main Cluster page)
 2. Click on **Deploy** in the "I want to deploy a new Prims Central instance" box
-3. If 5.5.x shows under available version, click **Download**.
-4. If it does not show up, the you will need to click on **upload the Prism Central binary** (The tar & json files should be available on POCFS/HPOC-AFS)
-5. Click on **Install** next to 5.5.x
-6. Input the following info, and then click **Deploy**:
+3. 5.5.x must be showed under available version (we already upload it), so just click **Install** next to 5.5.x.
+4. If it does not show up, the you will need to click on **upload the Prism Central binary** (The tar & json files are available on Nutanix Portal)
+5. Input the following info, and then click **Deploy**:
 
 +--------------------------+------------------------------------------+
 | VM Name                  |                             PC           |
 +--------------------------+------------------------------------------+
-| Container                |                             Bootcamp     |
+| Container                |                             training     |
 +--------------------------+------------------------------------------+
-| VM Sizing                |                             Small        |
+| VM Sizing                |                             Large        |
 +--------------------------+------------------------------------------+
-| AHV Network              |                             bootcamp     |
+| AHV Network              |                             training     |
 +--------------------------+------------------------------------------+
 | IP Address               |                             10.x.x.39    |
 +--------------------------+------------------------------------------+
 
-**Note:** Once the Prism Central deployment task finishes, move on
+**Note:** PC Large sizing is highly recommended with Calm in order to have good performance.
 
-7. In s separate browser tab, got to https://10.x.x.39:9440
+7. In a separate browser tab, got to https://10.x.x.39:9440
 8. Log in with admin / Nutanix/4u
 9. Change password to HPOC Password
 10. Continue log in with admin / HPOC Password
@@ -85,17 +74,19 @@ We will start by installing prism Central
 +--------------------------+------------------------------------------+
 
 6. You should now see **OK** int he Prism Central Widget (On the main Cluster page)
+7. You could verify that your cluster is visible in the Prism Central interface, for exemple in the Cluster Quick Access widget
 
 
-**Step 3 — UI Settings**
-************************
+**Step 3 — PC UI Settings**
+***************************
 
-Change Session Timeout Values
+Change Prism Central UI Settings
 
 1. Go To Gear --> UI Settings
-2. Session Timeout for Current User = 30 minutes
-3. Default Session Timeout for all Users = 2 hours
-4. Session Timeout override = Allow unlimited
+2. Enable animated background particles = Unchecked
+3. Session Timeout for Current User = 30 minutes
+4. Default Session Timeout for all Users = 2 hours
+5. Session Timeout override = Allow unlimited
 
 
 **Step 4 — Setup Authentication and Role Mapping**
@@ -107,34 +98,34 @@ Change Session Timeout Values
 +----------------------------+----------------------------------------+
 | Directory Type             |           Active Directory             |
 +----------------------------+----------------------------------------+
-| Name                       |           Bootcamp                     |
+| Name                       |           training                     |
 +----------------------------+----------------------------------------+
-| Domain                     |           bootcamp.local               |
+| Domain                     |           training.local               |
 +----------------------------+----------------------------------------+
 | Directory URL              |           ldap://10.x.x.40             |
 +----------------------------+----------------------------------------+
-| Service Account Name       |           administrator@bootcamp.local |
+| Service Account Name       |           administrator@training.local |
 +----------------------------+----------------------------------------+
 | Service Account Password   |           HPOC Password                |
 +----------------------------+----------------------------------------+
 
-3. Click on the yellow ! next to Bootcamp
+3. Click on the yellow ! next to training
 4. Click on the **Click Here** to go to the Role Mapping screen
 5. Click **New Mapping**
 
 +----------------------------+----------------------------------------+
-| Directory                  |           Bootcamp                     |
+| Directory                  |           training                     |
 +----------------------------+----------------------------------------+
-| LDAP Type                  |           group                        |
+| LDAP Type                  |           user                         |
 +----------------------------+----------------------------------------+
 | Role                       |           Cluster Admin                |
 +----------------------------+----------------------------------------+
-| Values                     |           Bootcamp Users               |
+| Values                     |           user01                       |
 +----------------------------+----------------------------------------+
 
 6. Close the Role Mapping and Authentication windows
 7. Log out of Prism Central
-8. Log in as **user01@bootcamp.local**
+8. Log in as **user01@training.local**
 9. Once you validate you can log in as user01, log out
 10. Log back into Prism Central as admin
 
@@ -148,14 +139,14 @@ In this section we will configure Self-Service Portal (SSP)
 2. Fill in the following info under Connect to AD, and then click **Next**:
 
 +--------------------------+------------------------------------------+
-| Select Active Directory  |            Bootcamp                      |
+| Select Active Directory  |            training                      |
 +--------------------------+------------------------------------------+
-| Username                 |            administrator@bootcamp.local  |
+| Username                 |            administrator@training.local  |
 +--------------------------+------------------------------------------+
 | Password                 |            HPOC Password                 |
 +--------------------------+------------------------------------------+
 
-3. Click on **Add Admins**, and add the "Bootcamp Users" group. Click **Save**
+3. Click on **Add Admins**, and add the "Administrators (group)" group. Click **Save**
 4. Click **Save**
 
 
@@ -182,23 +173,17 @@ In this section will create a project for use with SSP & Calm
 2. Click on **Create Project**
 3. Project Name = Calm
 4. Enter Description if you like
-5. Click **User**
+5. Click **+ User**
 6. Enter the following info, and click **Save**
 
 +----------------------------+----------------------------------------+
-| Name (User or Group)       |           Bootcamp Users (group)       |
+| Name (User or Group)       |           training Users (group)       |
 +----------------------------+----------------------------------------+
 | Role                       |           Developer                    |
 +----------------------------+----------------------------------------+
 
-7. Check the box for the **bootcamp** network, and make it **Default**
+7. Check the box for the **training** network, and make it **Default**
 8. Quotas (Optional)
 9. Click **Save**
 
-**Note:** If the Users or Group you added are SSP Admins they will not show as group members. This is because they are already admins, and have access.
-
-
-**Step 8 — Go forth and Create / Demo / Build / Have Fun**
-**********************************************************
-
-Build Some Blueprints / Applications / or deploy from the Marketplace
+**Note:** If the Users or Group you added are SSP Admins (like user01) they will not show as group members. This is because they are already admins, and have access.
