@@ -208,7 +208,7 @@ the following script into the **install** window:
 
    mysql -u @@{Mysql_user}@@ -p@@{Mysql_password}@@ <<-EOF
    CREATE DATABASE @@{Database_name}@@;
-   GRANT ALL PRIVILEGES ON homestead.* TO '@@{Database_name}@@'@'%' identified by 'secret';
+   GRANT ALL PRIVILEGES ON @@{Database_name}@@.* TO '@@{Database_name}@@'@'%' identified by 'secret';
 
    FLUSH PRIVILEGES;
    EOF

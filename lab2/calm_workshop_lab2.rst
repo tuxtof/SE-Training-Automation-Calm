@@ -156,15 +156,25 @@ This service will now deploy 2 VMs with the same configuration rather
 than just 1
 
 We’ve now added redundancy or load balancing capacity to the PHP server,
-but need something to actually to the load balancing.
+but need something to actually do the load balancing.
 
 1. Add another Service. This will be our load balancer, so name the
-   Service **HAProxy**, give the substrate and VM a name and configure
+   Service **LBService**, give the substrate and VM a name and configure
    the rest of the service.
 
-2. Remember to configure the NIC and credentials at the bottom
+   +----------------------+----------------------------------------------------+
+   | VM Name              | training-lb-<<yourName>>                           |
+   +----------------------+----------------------------------------------------+
+   | Image                | CentOS                                             |
+   +----------------------+----------------------------------------------------+
+   | vCPUs                | 1                                                  |
+   +----------------------+----------------------------------------------------+
+   | Cores per vCpu       | 2                                                  |
+   +----------------------+----------------------------------------------------+
+   | Memory               | 2 GiB                                              |
+   +----------------------+----------------------------------------------------+
 
-Under **Package** configure the following install script
+2. Remember to configure the NIC and credentials at the bottom
 
 Under **Package** configure the following install script:
 
@@ -173,9 +183,9 @@ Under **Package** configure the following install script:
    #!/bin/bash
    set -ex
 
-   sudo yum update -y
-   sudo yum install -y haproxy
-   echo "global
+   yum install -y haproxy
+   tee /etc/haproxy/haproxy.cfg << EOF
+   global
          log 127.0.0.1 local0
          log 127.0.0.1 local1 notice
          maxconn 4096
@@ -210,8 +220,10 @@ Under **Package** configure the following install script:
          maxconn 2000
          bind 0.0.0.0:80
          default_backend servers­http
-         backend servers-http" | tee /etc/haproxy/haproxy.cfg
-         sudo sed -i 's/server host-/#server
+         backend servers-http
+   EOF
+
+   sed -i 's/server host-/#server
          host-/g' /etc/haproxy/haproxy.cfg
          hosts=$(echo "@@{AppService.address}@@" | sed 's/^,//' | sed 's/,$//' | tr "," "\n")
          port=80
@@ -220,19 +232,19 @@ Under **Package** configure the following install script:
             100 check" | tee ­a /etc/haproxy/haproxy.cfg
          done
 
-         sudo systemctl daemon­reload
-         sudo systemctl restart haproxy
-         sudo yum install firewalld -y
+   systemctl daemon­ reload
+   systemctl restart haproxy
+   yum install firewalld -y
 
-         sudo service firewalld start
-         sudo firewall-cmd -add-service=http --zone=public --permanent
-         sudo firewall-cmd --add­port=8080/tcp --zone=public --permanent
-         sudo firewall-cmd --reload
+   service firewalld start
+   firewall-cmd -add-service=http --zone=public --permanent
+   firewall-cmd --add­port=8080/tcp --zone=public --permanent
+   firewall-cmd --reload
 
 
-Notice we’re using **@@{PHP.address}@@** here just like before, but
-putting it in a loop to get both PHP servers added to the HAProxy
-config. Add the **Dependency** arrow like before.
+Notice we’re using **@@{AppService.address}@@** here just like before, but
+putting it in a loop to get both App servers added to the HAProxy
+config.
 
 Add the following uninstall script
 
