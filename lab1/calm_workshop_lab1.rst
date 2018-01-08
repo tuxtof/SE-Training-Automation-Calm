@@ -4,25 +4,11 @@
 
 .. contents::
 
-
-**Connectivity Instructions:**
-******************************
-
-+------------+--------------------------------------------------------+
-| IP         |                                           Cluster IP   |
-+------------+--------------------------------------------------------+
-| Username   |                                           Cluster User |
-+------------+--------------------------------------------------------+
-| Password   |                                           Cluster Pass | 
-+------------+--------------------------------------------------------+
-
 Lab Overview
 ************
 
 Welcome to the Calm Hands-On-Lab - Simple Blueprint. What we’re going to
 do here is make a basic blueprint:
-
-|image0|
 
 This is a basic MySQL Deployment. In this lab we’ll start with a very
 basic, single service.
@@ -31,7 +17,7 @@ basic, single service.
 *****************
 
 **Service**: One tier of a multiple tier application. This can be made
-up of 1 more VMs (or existing machines) that all have the same config
+up of 1 or more VMs (or existing machines) that all have the same config
 and do the same thing
 
 **Application (App):** A whole application with multiple parts that are
@@ -49,10 +35,9 @@ ran on the target machine. Macros and Variables are denoted in the
 
 Getting Familiar with the Tools
 
-1. Connect to https://<HPOC.PC:9440>
+1. Connect to https://<10.x.x.39:9440>
 
-2. Login to Prism Central using the credentials specified above (use
-   these credentials unless specified otherwise throughout this lab 
+2. Login to Prism Central using the HPOC credentials
 
 3. Click on the Apps tab across the top of Prism
 
@@ -69,18 +54,18 @@ For now, let’s step through each tab:
 **Part 2: Your Entry Level Blueprint**
 **************************************
 
-1. Navigate to the Blueprint ( |image2|) tab
-
+1. Navigate to the Blueprint ( |image2| ) tab
 2. Click on **Create Blueprint **
+3. Assign this Blueprint to the calm  Project
+4. Click on Proceed
 
-3. Assign this Blueprint to the Default Project Welcome to the Blueprint
-   Editor! Let’s take a look at the interface
+ Welcome to the Blueprint Editor ! Let’s take a look at the interface
 
 |image3|
 
 In general, the Blueprint creation flow goes:
 
--  Create Object in Application Overview ○ Or select an existing object
+-  Create Object in Application Overview  or select an existing object
    either from the workspace or the Overview panel
 
 -  Configure the object in the configuration pane
@@ -96,15 +81,15 @@ blueprint:
 
 Let’s get started by setting up the basics
 
-1. Update the Blueprint Name to **HOL­<<yourName>> **
+1. Update the Blueprint Name to **training-mysql-<<yourName>> **
 
-2. Click on Credentials ( |image5|) button ○ Credentials are unique per
+2. Click on Credentials ( |image5|) button, credentials are unique per
    blueprint
 
 |image6|
 
 +-----------------------+---------------+
-| **Name **             | Your choice   |
+| **Name **             | root password |
 +-----------------------+---------------+
 | **Username **         | root          |
 +-----------------------+---------------+
@@ -120,6 +105,9 @@ Setting Variables
 At this step let’s set some variables up. It’s not necessary to do it at
 this point, however it will make our lives easier for the rest of the
 lab.
+
+To access variables click on the Default Application Profiles object in the application overview.
+You will find the Variable List in the Configuration Pane (on the right)
 
 Variables have 2 settings, **Secret** and **Runtime**. Normally
 variables are stored in plaintext and shown in the window here, the
@@ -140,9 +128,7 @@ string before sending it down to the VM
 +----------------------+------------------------------------------------------+
 | Mysql\_password      | nutanix/4u                                           |
 +----------------------+------------------------------------------------------+
-| Database\_name       | homestead                                            |
-+----------------------+------------------------------------------------------+
-| App\_git\_link       | https://github.com/ideadevice/quickstart­basic.git   |
+| Database\_name       | training                                             |
 +----------------------+------------------------------------------------------+
 
 Setup the variables as specified in the table above.
@@ -189,38 +175,38 @@ the following script into the **install** window:
 
    #!/bin/bash
    set -ex
-   
+
    yum install -y "http://repo.mysql.com/mysql-community-release-el7.rpm"
    yum update -y
    yum install -y mysql-community-server.x86_64
-   
+
    /bin/systemctl start mysqld
-   
+
    #Mysql secure installation
    mysql -u root<<-EOF
-   
+
    #UPDATE mysql.user SET Password=PASSWORD('@@{Mysql_password}@@') WHERE User='@@{Mysql_user}@@';
    DELETE FROM mysql.user WHERE User='@@{Mysql_user}@@' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
    DELETE FROM mysql.user WHERE User='';
    DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%';
-   
+
    FLUSH PRIVILEGES;
    EOF
- 
+
    sudo yum install firewalld -y
    sudo service firewalld start
    sudo firewall-cmd --add-service=mysql --permanent
    sudo firewall-cmd --reload
- 
+
    #mysql -u @@{Mysql_user}@@ -p@@{Mysql_password}@@ <<-EOF
    mysql -u @@{Mysql_user}@@ <<-EOF
    CREATE DATABASE @@{Database_name}@@;
    GRANT ALL PRIVILEGES ON homestead.* TO '@@{Database_name}@@'@'%' identified by 'secret';
- 
+
    FLUSH PRIVILEGES;
    EOF
-   
-   
+
+
 Looking at this script, we see that we’re using the variables we set
 before and doing basic mySQL configuration. This can be customized for
 whatever unique need you have.
@@ -234,7 +220,7 @@ Set the uninstall script to **shell** and select the credential you used
 earlier. Fill the uninstall script window with a simple:
 
 .. code-block:: bash
-   
+
    #!/bin/bash
    echo "Goodbye!"
 
@@ -281,9 +267,6 @@ sub­action) and get the logs from that event.
 **NOTE:** In this lab, the only active project is **Default** and all
 users are a member of it.
 
-.. |image0| image:: ./media/image1.png
-   :width: 4.73125in
-   :height: 3.03056in
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
