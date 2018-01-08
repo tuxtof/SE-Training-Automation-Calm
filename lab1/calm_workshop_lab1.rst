@@ -89,7 +89,7 @@ Let’s get started by setting up the basics
 |image6|
 
 +-----------------------+---------------+
-| **Name **             | root password |
+| **Name **             | root          |
 +-----------------------+---------------+
 | **Username **         | root          |
 +-----------------------+---------------+
@@ -145,16 +145,27 @@ With these basics setup, let’s create our first service.
 3. Name your service DBService at the top
 
 4. The Substrate section is the internal Calm name for this Service.
-   Name this **MySQLSubstrate.**
+   Name this **DBSubstrate.**
 
 5. Make sure that the Cloud is set to **Nutanix** and the OS set to
-   **Linux** Configure the VM as shown below:
+   **Linux**
 
 Now update the VM Configuration section to match the following:
 
-|image10|
++----------------------+------------------------------------------------------+
+| VM Name              | training-mysql-<<yourName>>                          |
++----------------------+------------------------------------------------------+
+| Image                | CentOS                                               |
++----------------------+------------------------------------------------------+
+| vCPUs                | 1                                                    |
++----------------------+------------------------------------------------------+
+| Cores per vCpu       | 2                                                    |
++----------------------+------------------------------------------------------+
+| Memory               | 2 GiB                                                |
++----------------------+------------------------------------------------------+
 
-1. Scroll to the bottom and add a NIC attached to the **DemoVMs**
+
+1. Scroll to the bottom and add a NIC attached to the **training**
    network
 
 2. Configure the **Credentials** at the bottom to use the credentials
@@ -165,10 +176,8 @@ Now update the VM Configuration section to match the following:
 **Package Configuration**
 
 Here is where we specify the installation and uninstall scripts for this
-service. Give the install package a name (MySQL\_Package for example),
-set the install
-
-script to **shell** and select the credential you created earlier. Copy
+service. Give the install package a name (MySQL\_package for example),
+set the install script to **shell** and select the **root** credential you created earlier. Copy
 the following script into the **install** window:
 
 .. code-block:: bash
@@ -177,7 +186,6 @@ the following script into the **install** window:
    set -ex
 
    yum install -y "http://repo.mysql.com/mysql-community-release-el7.rpm"
-   yum update -y
    yum install -y mysql-community-server.x86_64
 
    /bin/systemctl start mysqld
@@ -185,7 +193,7 @@ the following script into the **install** window:
    #Mysql secure installation
    mysql -u root<<-EOF
 
-   #UPDATE mysql.user SET Password=PASSWORD('@@{Mysql_password}@@') WHERE User='@@{Mysql_user}@@';
+   UPDATE mysql.user SET Password=PASSWORD('@@{Mysql_password}@@') WHERE User='@@{Mysql_user}@@';
    DELETE FROM mysql.user WHERE User='@@{Mysql_user}@@' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
    DELETE FROM mysql.user WHERE User='';
    DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%';
@@ -198,8 +206,7 @@ the following script into the **install** window:
    sudo firewall-cmd --add-service=mysql --permanent
    sudo firewall-cmd --reload
 
-   #mysql -u @@{Mysql_user}@@ -p@@{Mysql_password}@@ <<-EOF
-   mysql -u @@{Mysql_user}@@ <<-EOF
+   mysql -u @@{Mysql_user}@@ -p@@{Mysql_password}@@ <<-EOF
    CREATE DATABASE @@{Database_name}@@;
    GRANT ALL PRIVILEGES ON homestead.* TO '@@{Database_name}@@'@'%' identified by 'secret';
 
@@ -235,7 +242,7 @@ Now that the blueprint has been created and saved, you can launch it!
 
 Click on the **Launch** button in the top right. This will bring up the
 the launch window. Give this instance a unique name
-(**HOL\_<<YourName>>\_1**). Note that for every launch you do you will
+(**training-mysql-\_<<YourName>>\_1**). Note that for every launch you do you will
 need to increment this as instance names must be unique.
 
 This will now bring you to the **Instance** page. The bar across the top
@@ -264,8 +271,7 @@ sub­action) and get the logs from that event.
 
 |image15|
 
-**NOTE:** In this lab, the only active project is **Default** and all
-users are a member of it.
+
 
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
@@ -294,9 +300,6 @@ users are a member of it.
 .. |/Users/nathancox/Desktop/Screen Shot 2017-11-29 at 12.03.25 PM.png| image:: ./media/media/image10.png
    :width: 3.01458in
    :height: 5.12232in
-.. |image10| image:: ./media/image11.png
-   :width: 4.98125in
-   :height: 0.46933in
 .. |image11| image:: ./media/image12.png
    :width: 5.76458in
    :height: 1.57328in
