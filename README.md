@@ -8,5 +8,5 @@ Info needed for an SE to setup  environment for this training
 # Calm training modules
 
 - [Lab: NuCalm Simple Blueprint](./lab1/calm_workshop_lab1.rst)
-- []()
+- [Lab: NuCalm Intermediate Blueprint (LAMP)](./lab2/calm_workshop_lab2.rst)
 - []()
