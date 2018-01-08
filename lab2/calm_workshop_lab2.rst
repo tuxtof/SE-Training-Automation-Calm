@@ -90,7 +90,7 @@ Install script with the following script:
    #sudo php5enmod mcrypt
    systemctl restart php-fpm
    systemctl restart nginx
-   if [ ! -e /usr/local/bin/composer ] then
+   if [ ! -e /usr/local/bin/composer ] ; then
       curl -sS https://getcomposer.org/installer | php
       mv composer.phar /usr/local/bin/composer
       chmod +x /usr/local/bin/composer
@@ -134,6 +134,7 @@ Fill­in the uninstall script with the same basic exit as before:
 the **Overview** pane.
 
 Because AppService package install script use a macro to get IP of DBService  @@{DBService.address}@@ ) you will see a orange dependency arrow between the two service.
+During save Calm analyze the Blueprint to try to automaticly detect dependency between components.
 
 **Part 3: Scale­out PHP and Load Balancer ** 
 ********************************************
