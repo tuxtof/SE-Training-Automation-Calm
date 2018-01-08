@@ -98,6 +98,10 @@ Install script with the following script:
 
    git clone https://github.com/ideadevice/quickstart-basic.git /var/www/laravel
    sed -i 's/DB_HOST=.*/DB_HOST=@@{DBService.address}@@/' /var/www/laravel/.env
+   sed -i 's/DB_DATABASE=.*/DB_DATABASE=@@{Database_name}@@/' /var/www/laravel/.env
+   sed -i 's/DB_USERNAME=.*/DB_USERNAME=@@{Mysql_user}@@/' /var/www/laravel/.env
+   sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=@@{Mysql_password}@@/' /var/www/laravel/.env
+
    cd /var/www/laravel
    composer install
    php artisan migrate
@@ -141,7 +145,7 @@ During save Calm analyze the Blueprint to try to automaticly detect dependency b
 
 In this part we’re going to finally finish the provisioning blueprint.  
 
-1. Click on the \ **PHP **\ service. 
+1. Click on the \ **AppService **\ service. 
 
 2. Click on the \ **Service **\ tab. 
 
