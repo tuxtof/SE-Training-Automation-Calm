@@ -5,72 +5,23 @@
 .. contents::
 
 
-**Connectivity Instructions**
-*****************************
-
-+------------+----+
-| IP         |    |
-+------------+----+
-| Username   |    |
-+------------+----+
-| Password   |    |
-+------------+----+
-
 **Lab Overview**
 ****************
 
-Welcome to the Calm Hands-On-Lab - Intermediate Blueprint What we’re
-going to do here is extend a basic blueprint:  
+Welcome to the Calm Hands-On-Lab - Intermediate Blueprint. What we’re
+going to do here is extend the previous basic blueprint:  
 
 |image0|
 
-This is a basic LAMP Stack (Linux Apache MySQL PHP). In
-this lab we’ll build on the previous 1x simple service MySQL
+The goal is to create a basic LAMP Stack (Linux Apache MySQL PHP). In
+this lab we’ll build on the previous simple service MySQL
 blueprint and evolve this into the multi-stack application you see
 above.
-
-**Calm Glossary**
-
-**Service**: One tier of a multiple tier application. This can be made
-up of 1 more VMs (or existing machines) that all have the same config
-and do the same thing
-
-**Application (App):** A whole application with multiple parts that are
-all working towards the same thing (for example, a Web Application might
-be made up of an Apache Server, a MySQL database and a HAProxy Load
-balancer. Alone each service doesn’t do much, but as a whole they do
-what they’re supposed to).
-
-**Macro:** A Calm construct that is evaluated and expanded before being
-ran on the target machine. Macros and Variables are denoted in the
-@@{[name]}@@ format in the scripts.
-
-**Part 1: Accessing and Navigating Calm**
-*****************************************
-
-Getting Familiar with the Tools
-
-1. Connect to https://<HPOC.PC:9440>
-
-2. Login to Prism Central using the credentials specified above (use
-   these credentials unless specified otherwise throughout this lab 
-
-3. Click on the Apps tab across the top of Prism
-
-Welcome to Calm! Upon accessing this page you will now notice a new
-ribbon along the left ­ this is used to navigate through Calm.
-
-You are, by default, dropped into the Applications tab and can see all
-the instances of applications that have been launched from a blueprint.
-
-For now, let’s step through each tab:
-
-|image1|
 
 **Part 2: Creating a Web Server**
 *********************************
 In this step we’ll add a second tier and connect it back into the DB
-Service created from Lab #1 Simple Blueprint service(MySQL).
+Service created from Lab #1 Simple Blueprint service (MySQL).
 
 1. Click the + sign next to **Services** in the **Overview** pane
 
@@ -79,15 +30,23 @@ Service created from Lab #1 Simple Blueprint service(MySQL).
 3. Rearrange the icons to your liking, then click on the new Service 2.
    Since this is our application server, name the service AppService.
 
-4. Give the Substrate a name, and choose a VM name like above. Proceed
+4. Give the Substrate a name, and choose a VM name. Proceed
    and configure the rest of the application as we did with the DB
    server
 
-|image2|
+   +----------------------+------------------------------------------------------+
+   | VM Name              | training-app-<<yourName>>                          |
+   +----------------------+------------------------------------------------------+
+   | Image                | CentOS                                               |
+   +----------------------+------------------------------------------------------+
+   | vCPUs                | 1                                                    |
+   +----------------------+------------------------------------------------------+
+   | Cores per vCpu       | 2                                                    |
+   +----------------------+------------------------------------------------------+
+   | Memory               | 2 GiB                                                |
+   +----------------------+------------------------------------------------------+
 
-|image3|
-
-Be sure to scroll down, add a NIC and configure the credentials.
+Be sure to scroll down, add a NIC on **training** network and configure the credentials.
 
 Now that our PHP server has the basic VM settings, navigate over to the
 Package page.
@@ -99,10 +58,10 @@ Install script with the following script:
 .. code-block:: bash
 
    #!/bin/bash
-   sudo yum update -y
-   sudo yum -y install epel­release
+   
+   yum -y install epel-release
    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-   sudo yum install -y nginx php56w­fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
+   yum install -y nginx php56w-fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
    mkdir -p /var/www/laravel
    echo "server {
          listen   80 default_server;
@@ -121,45 +80,46 @@ Install script with the following script:
                   fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
                   include fastcgi_params;
          }
-   }" |sudo tee /etc/nginx/conf.d/laravel.conf
+   }" | tee /etc/nginx/conf.d/laravel.conf
    sed -i 's/80 default_server/80/g' /etc/nginx/nginx.conf
    if `grep "cgi.fix_pathinfo" /etc/php.ini` ; then
       sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /etc/php.ini
    else
       sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /etc/php.ini
    fi
-   
+
    #sudo php5enmod mcrypt
-   sudo systemctl restart php-fpm
-   sudo systemctl restart nginx
+   systemctl restart php-fpm
+   systemctl restart nginx
    if [ ! -e /usr/local/bin/composer ] then
       curl -sS https://getcomposer.org/installer | php
       mv composer.phar /usr/local/bin/composer
       chmod +x /usr/local/bin/composer
    fi
-   
+
    git clone @@{App_git_link}@@ /var/www/laravel
    sed -i 's/DB_HOST=.*/DB_HOST=@@{DBService.address}@@/' /var/www/laravel/.env
-   sudo su - -c "cd /var/www/laravel; composer install ; php artisan migrate"
-   
+   cd /var/www/laravel
+   composer install
+   php artisan migrate
+
    chown -R nginx:nginx /var/www/laravel
    chmod -R 777 /var/www/laravel/
- 
+
    systemctl restart php-fpm
    systemctl restart nginx
-   sudo yum install firewalld -y
-   sudo service firewalld start
-   sudo firewall-cmd --add-service=http --zone=public --permanent
-   sudo firewall-cmd --reload
-   sleep 2
+   yum install firewalld -y
+   service firewalld start
+   firewall-cmd --add-service=http --zone=public --permanent
+   firewall-cmd --reload
 
 
 Here you see variables like before, but also something new:
 
-@@{MySQL.address}@@
+@@{DBService.address}@@
 
 This is a **Calm Macro**. What this does it get the IP address from
-the \ **MySQL** server and replaces that in this script. With that it
+the  **MySQL** server and replaces that in this script. With that it
 doesn’t matter what IP the DB comes up with, the PHP server will always
 know where it’s DB is. There are many more native macros ­ a full list
 will be available in documentation at launch!
@@ -171,16 +131,10 @@ Fill­in the uninstall script with the same basic exit as before:
    #!/bin/bash
    echo "goodbye!"
 
-Before we’re finished here, we have 1 more step to do. Since we need the
-DB address to bring up the PHP server, we need to add a **Dependency**.
-Click on the
+**Save** the blueprint, then click on the **Create** action from
+the **Overview** pane.
 
-**PHP** service, click on the Arrow icon that appears right above it,
-then click on the **MySQL** service
-
-This tells Calm to hold running the script until the **MySQL** service
-is up. **Save** the blueprint, then click on the **Create** action from
-the **Overview** pane to see this.
+Because AppService package install script use a macro to get IP of DBService  @@{DBService.address}@@ ) you will see a orange dependency arrow between the two service.
 
 **Part 3: Scale­out PHP and Load Balancer ** 
 ********************************************
@@ -224,7 +178,7 @@ Under **Package** configure the following install script:
 
    #!/bin/bash
    set -ex
- 
+
    sudo yum update -y
    sudo yum install -y haproxy
    echo "global
@@ -271,17 +225,17 @@ Under **Package** configure the following install script:
             echo "  server host­${host} ${host}:${port} weight 1 maxconn
             100 check" | tee ­a /etc/haproxy/haproxy.cfg
          done
-         
+
          sudo systemctl daemon­reload
          sudo systemctl restart haproxy
          sudo yum install firewalld -y
-         
+
          sudo service firewalld start
          sudo firewall-cmd -add-service=http --zone=public --permanent
          sudo firewall-cmd --add­port=8080/tcp --zone=public --permanent
          sudo firewall-cmd --reload
- 
- 
+
+
 Notice we’re using **@@{PHP.address}@@** here just like before, but
 putting it in a loop to get both PHP servers added to the HAProxy
 config. Add the **Dependency** arrow like before.
@@ -339,12 +293,6 @@ users are a member of it.
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
-.. |image2| image:: ./media/image3.png
-   :width: 3.02778in
-   :height: 3.61034in
-.. |image3| image:: ./media/image4.png
-   :width: 4.98125in
-   :height: 0.46933in
 .. |image4| image:: ./media/image5.png
    :width: 2.93056in
    :height: 3.05375in
