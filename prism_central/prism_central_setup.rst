@@ -171,7 +171,7 @@ In this section will create a project for use with SSP & Calm
 
 1. Go to Explore --> Projects
 2. Click on **Create Project**
-3. Project Name = Calm
+3. Project Name = calm
 4. Enter Description if you like
 5. Click **+ User**
 6. Enter the following info, and click **Save**
