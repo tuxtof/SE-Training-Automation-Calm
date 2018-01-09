@@ -10,5 +10,5 @@ Info needed for an SE to setup  environment for this training
 - [Lab: NuCalm Simple Blueprint](./lab1/calm_workshop_lab1.rst)
 - [Lab: NuCalm Intermediate Blueprint (LAMP)](./lab2/calm_workshop_lab2.rst)
 - [Lab: NuCalm Blueprint Troubleshooting](./lab3/calm_workshop_lab3_troubleshooting.rst)
-- [Lab: NuCalm Marketplace P1](./lab4/calm_workshop_lab4_marketplace.rst)
+- [Lab: NuCalm Marketplace part 1](./lab4/calm_workshop_lab4_marketplace.rst)
 - []()
