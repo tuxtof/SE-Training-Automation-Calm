@@ -202,8 +202,8 @@ Under **Package** configure the following install script:
          user haproxy
          group haproxy
          defaults
-               log     global
-               mode    http
+               log global
+               mode http
                retries 3
                timeout client 50s
                timeout connect 5s
@@ -228,7 +228,7 @@ Under **Package** configure the following install script:
          frontend http
          maxconn 2000
          bind 0.0.0.0:80
-         default_backend servers­http
+         default_backend servers-http
          backend servers-http
    EOF
 
@@ -236,17 +236,17 @@ Under **Package** configure the following install script:
    hosts=$(echo "@@{AppService.address}@@" | sed 's/^,//' | sed 's/,$//' | tr "," "\n")
    port=80
    for host in $hosts do
-      echo "  server host­${host} ${host}:${port} weight 1 maxconn 100 check" | tee ­a /etc/haproxy/haproxy.cfg
+      echo "  server host-${host} ${host}:${port} weight 1 maxconn 100 check" | tee -a /etc/haproxy/haproxy.cfg
    done
 
-   systemctl daemon­ reload
+   systemctl daemon-reload
    systemctl restart haproxy
    yum install firewalld -y
 
    systemctl enable firewalld
    systemctl start firewalld
    firewall-cmd --add-service=http --zone=public --permanent
-   firewall-cmd --add­port=8080/tcp --zone=public --permanent
+   firewall-cmd --add-port=8080/tcp --zone=public --permanent
    firewall-cmd --reload
 
 
