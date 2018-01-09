@@ -212,8 +212,8 @@ Under **Package** configure the following install script:
         option httplog
         option redispatch
         balance  roundrobin
-        # Set up application listeners here.
-  listen stats 0.0.0.0:8080
+   # Set up application listeners here.
+   listen stats 0.0.0.0:8080
         mode http
         log global
         stats enable
