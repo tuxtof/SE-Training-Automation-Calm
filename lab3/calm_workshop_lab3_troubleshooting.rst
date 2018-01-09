@@ -32,7 +32,7 @@ Navigate to the Blueprint Workspace by clicking (|image1|) icon located on the l
 
 |image2|
 
-Navigate your SMB share for the **.../CalmWorkshp/Troubleshooting.json** blueprint.  Select the file and continue.  A modal dialog will appear prompting for a name and project when saving. Complete the fileds as show below and click **upload**. This will save the blueprint to the workspace.
+Download the following blueprint  `Jenkins-Troubleshooting.json<https://raw.githubusercontent.com/tuxtof/SE-Training-Automation-Calm/master/lab3/Jenkins%20Troubleshooting.json>`_.  Select the file and continue.  A modal dialog will appear prompting for a name and project when saving. Complete the fileds as show below and click **upload**. This will save the blueprint to the workspace.
 
 - **Name:** Calm Workshop Blueprint Debug
 - **Project:** Calm
@@ -106,6 +106,7 @@ You can monitor the completion of the application deletion by clicking *Audit*
 |image16|
 
 Repeat parts 4-6 until application successfully deploys...
+
 
 
 .. |image1| image:: ./media/image1.png
