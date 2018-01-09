@@ -1,5 +1,5 @@
 # Initial Training Setup Guide
-Info needed for an SE to setup  environment for this training
+Info needed for setup HPOC environment for this training
 
 - [Setup Prism Element (HPOC)](./prism_element/prism_element_setup.rst)
 - [Setup Active Directory](./active_directory/active_directory_setup.rst)
