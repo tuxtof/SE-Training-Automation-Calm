@@ -85,9 +85,9 @@ Navigate to the Marketplace by clicking (|image6|) icon located on the left tool
 Part 4: Edit Project Workspace
 **********************************************
 
-Before a Bluerpint can be launched from the Marketplace the Project's Environment needs to be configured with:
+Before a Blueprint can be launched from the Marketplace the Project's Environment needs to be configured with:
 
-- **USER:** .  Userid and password for logging into the VM
+- **USER:** Userid and password for logging into the VM
 - **Network:** A Network for the Blueprint to launch from.
 
 This can be done in the Projects Manager. Navigate to the the Projects Manager by clicking the(|image13|)icon located on the left tool ribbon.  This will open the Projects Manager where projects are persisted.

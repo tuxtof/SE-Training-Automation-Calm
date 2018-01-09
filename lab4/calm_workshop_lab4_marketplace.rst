@@ -74,7 +74,14 @@ Click the red exclamation point to see a list fo error desriptions.
 
 Fix each of the errors listed within the Blueprint.  Once all the errors have been corrected, make additional needed changes to each of the **Mongo** services (i.e. VM, Package, etc...) and launch the blueprint.  Continue to make changes until the the Blueprint successfully deploys.
 
-|image11|
+If you decide to use the blueprint embeded image, you need correctly configure SSH keys (private and public part),
+for that try to generate your own ssh keys and replace it in the blueprint.
+
+To generate your own SSH key use the 'ssh-keygen' command (if you don't have this command on your laptop you can run it from a cvm)
+
+You can also look in each service how cloudinit inject the public key for a specified user.
+
+
 
 
 
@@ -97,5 +104,3 @@ Fix each of the errors listed within the Blueprint.  Once all the errors have be
 .. |image9| image:: ./media/image15.png
 
 .. |image10| image:: ./media/image16.png
-
-.. |image11| image:: ./media/image17.png
