@@ -298,6 +298,11 @@ application.
 
 |image10|
 
+<<<<<<< HEAD
+=======
+**NOTE:** In this lab, the only active project is **Default**.
+
+>>>>>>> 6291fb04e02f219b71d2d485d26c4ae32d5d89ba
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
