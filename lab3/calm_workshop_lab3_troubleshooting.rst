@@ -15,7 +15,6 @@ In this exercise we'll walk through the steps to:
 2. Launch the Blueprint.
 3. Debug the Blueprint.
 
-**Note:** There should be a mapping or SMB share configured to connect to: **smb://pocfs.nutanixdc.local/images**.  This will be used to import existing blueprints.
 
 Part 1: Accessing Calm
 *************************************
@@ -43,7 +42,9 @@ The Blueprint workspace should appear as follows.
 
 |image4|
 
-Since Blureprints are exported as clear text, they do not retain credential information that could potentially be used maliciously.  You'll be required to set the **Credentials** to *User: root*,  *Password: nutanix/4u*.  Save the Blueprint.  The red **!** should no longer appear.
+Since Blureprints are exported as clear text, they do not retain credential information that could potentially be used maliciously.  You'll be required to set the **Credentials** to *User: root*,  *Password: nutanix/4u*.
+Also verify **Image** (choose CentOS if needed), **NIC** and **CONNECTION Credential** in each services.
+Save the Blueprint.  The red **!** should no longer appear.
 
 
 Part 3: Launch Blueprint
