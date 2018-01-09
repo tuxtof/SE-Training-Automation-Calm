@@ -35,11 +35,12 @@ The Calm product support a builtin engine script who allow run some task directl
 
 This script engine is based on a Python like syntax. Supported modules and functions are available in the `ESscript documentation`_. You can also find a sample script at the end of the documentation.
 
-Modify one of your previous blueprint to integrate interaction with external world (based on external API):
+Try to modify one of your previous blueprint to integrate interaction with external world, you can try to implement notification of deployment via Slack:
 
-- notification of deployment via slack, email, other notification service
-- modify CMDB or DNS server
-- modify firewall or security appliance
+- create an EScript Execute Task for one of your service in service create action
+- post in specific channel #xxxx (the trainer invite you to the channel) by using the EScript example below
+- improve EScript by reading `Slack Incoming Webhooks documentation`_
+
 
 **Example of Slack integration script:**
 
@@ -51,7 +52,8 @@ Modify one of your previous blueprint to integrate interaction with external wor
     api_url = "@@{SLACK_HOOK}@@"
 
     payload = {
-      'text': 'Server @@{calm_application_name}@@ was just deployed <http://@@{calm_application_name}@@.training.local/|click here> to connect !'
+      'text': 'Server @@{calm_application_name}@@ was just deployed <http://@@{calm_application_name}@@.training.local/|click here> to connect !',
+      'username': '@@{HPOC_number/Team_name}@@'
     }
 
     r = urlreq(api_url, verb='POST', headers=headers, params=json.dumps(payload))
@@ -61,7 +63,11 @@ Modify one of your previous blueprint to integrate interaction with external wor
       print "Post request failed", r.content
       exit(1)
 
-**note**: Ensure that your script starts with #script
+**note 1**: Ensure that your script always starts with #script
+
+**note 2**: You need to define each variable used in the sample scripts
+
+**note 3**: be carreful to create **@@{SLACK_HOOK}@@** variable as secret and to not share the URL because it's allow full access to the Slack channel
 
 Part 3: Installing Karan Service
 ********************************
@@ -78,4 +84,5 @@ You can follow the `Karan documentation`_ to install it on a dedicated proxy ser
 
 
 .. _`ESscript documentation`: https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Calm-Admin-Operations-Guide-v10:nuc-supported-escript-modules-functions-c.html
+.. _`Slack Incoming Webhooks documentation`: https://api.slack.com/custom-integrations/incoming-webhooks
 .. _`Karan documentation`: https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Calm-Admin-Operations-Guide-v10:nuc-installing-karan-service-t.html
