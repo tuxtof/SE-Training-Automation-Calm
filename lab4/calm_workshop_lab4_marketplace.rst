@@ -1,6 +1,6 @@
-*************************************
-**NuCalm Blueprint Marketplace Lab1**
-*************************************
+***************************************
+**NuCalm Blueprint Marketplace part 1**
+***************************************
 
 .. contents::
 
@@ -8,8 +8,8 @@
 Lab Overview
 ************
 
-In this lab participants will learn how to manage NuCalm Blueprints within the NuCalm Marketplace.  After this lab
-participants should know how to navigate and manage the Marketplace, publish blueprints to the market, deploy and/or clone
+In this lab we will learn how to manage NuCalm Blueprints within the NuCalm Marketplace.  After this lab
+we should know how to navigate and manage the Marketplace, publish blueprints to the market, deploy and/or clone
 blueprints from the marketplace.
 
 **Part 1: Accessing and Navigating Calm**
@@ -17,17 +17,11 @@ blueprints from the marketplace.
 
 Getting Familiar with the Tools
 
-1. Connect to https://[HPOC-IP-ADDRESS]:9440
-2. Login to Prism using the credentials specified above (use these credentials unless specified otherwise throughout this lab
+1. Connect to https://[10.x.x.39]:9440
+2. Login to Prism using your credentials
 3. Click on the Apps tab across the top of Prism
 
-Welcome to Calm! Upon accessing this page you will now notice a new ribbon along the left ­ this is used to navigate through Calm.
 
-You are, by default, dropped into the Applications tab and can see all the instances of applications that have been launched from a blueprint.
-
-**Tab review:**
-
-|image0|
 
 **Part 2: Marketplace Control - Publish Blueprints**
 ****************************************************
@@ -60,9 +54,12 @@ Navigate to the Marketplace by clicking (|image5|) icon located on the left tool
 |image6|
 
 
-Click the **Mongo** Blueprint Icon and then click **Clone** to copy the bluerpint to the Blueprint workspace for editing.
+Click the **Mongo** Blueprint Icon and then click **Clone** to copy the blueprint to the Blueprint workspace for editing.
 
 |image7|
+
+- Give a blueprint name -> **training-mongo**
+- Assign to the **calm** project
 
 **Part 4: Edit + Debug + Launch Cloned Blueprint**
 **************************************************
@@ -75,13 +72,11 @@ Click the red exclamation point to see a list fo error desriptions.
 
 |image10|
 
-Fix each of the errors listed within the Blueprint.  Once all the errors have been corrected, make additional changes to each of the **Mongo** services (i.e. VM, Package, etc...) and launch the blueprint.  Continue to make chnages until the the Blueprint successfully deploys.
+Fix each of the errors listed within the Blueprint.  Once all the errors have been corrected, make additional needed changes to each of the **Mongo** services (i.e. VM, Package, etc...) and launch the blueprint.  Continue to make changes until the the Blueprint successfully deploys.
 
 |image11|
 
 
-
-.. |image0| image:: ./media/image2.png
 
 .. |image1| image:: ./media/image4.png
 
