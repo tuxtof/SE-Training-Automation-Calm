@@ -88,6 +88,8 @@ Install script with the following script:
    fi
 
    #sudo php5enmod mcrypt
+   systemctl enable php-fpm
+   systemctl enable nginx
    systemctl restart php-fpm
    systemctl restart nginx
    if [ ! -e /usr/local/bin/composer ] ; then
@@ -110,8 +112,10 @@ Install script with the following script:
 
    systemctl restart php-fpm
    systemctl restart nginx
+   
    yum install firewalld -y
-   service firewalld start
+   systemctl enable firewalld
+   systemctl start firewalld
    firewall-cmd --add-service=http --zone=public --permanent
    firewall-cmd --reload
 
