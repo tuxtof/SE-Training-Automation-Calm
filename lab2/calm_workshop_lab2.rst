@@ -58,7 +58,7 @@ Install script with the following script:
 
    yum -y install epel-release
    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-   yum install -y nginx php56w-fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
+   yum install -y policycoreutils-python nginx php56w-fpm php56w-cli php56w-mcrypt php56w-mysql php56w-mbstring php56w-dom git
    mkdir -p /var/www/laravel
    tee /etc/nginx/conf.d/laravel.conf << EOF
    server {
@@ -108,11 +108,17 @@ Install script with the following script:
    php artisan migrate
 
    chown -R nginx:nginx /var/www/laravel
-   chmod -R 777 /var/www/laravel/
+   find /var/www/html/laravel/ -type f -exec chmod 640 {} \;
+   find /var/www/html/laravel/ -type d -exec chmod 750 {} \;
+
+   semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/laravel/storage(/.*)?"
+   semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/laravel/bootstrap/cache(/.*)?"
+   restorecon -Rv /var/www/
+   semanage boolean -m httpd_can_network_connect_db --on
 
    systemctl restart php-fpm
    systemctl restart nginx
-   
+
    yum install firewalld -y
    systemctl enable firewalld
    systemctl start firewalld
