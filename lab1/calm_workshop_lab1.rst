@@ -188,7 +188,8 @@ the following script into the **install** window:
    yum install -y "http://repo.mysql.com/mysql-community-release-el7.rpm"
    yum install -y mysql-community-server.x86_64
 
-   /bin/systemctl start mysqld
+   systemctl enable mysqld
+   systemctl start mysqld
 
    #Mysql secure installation
    mysql -u root<<-EOF
@@ -201,10 +202,11 @@ the following script into the **install** window:
    FLUSH PRIVILEGES;
    EOF
 
-   sudo yum install firewalld -y
-   sudo service firewalld start
-   sudo firewall-cmd --add-service=mysql --permanent
-   sudo firewall-cmd --reload
+   yum install firewalld -y
+   systemctl enable firewalld
+   systemctl start firewalld
+   firewall-cmd --add-service=mysql --permanent
+   firewall-cmd --reload
 
    mysql -u @@{Mysql_user}@@ -p@@{Mysql_password}@@ <<-EOF
    CREATE DATABASE @@{Database_name}@@;
