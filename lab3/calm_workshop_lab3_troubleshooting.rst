@@ -31,7 +31,7 @@ Navigate to the Blueprint Workspace by clicking (|image1|) icon located on the l
 
 |image2|
 
-Download the following blueprint  Jenkins-Troubleshooting.json_.  Select the file and continue.  A modal dialog will appear prompting for a name and project when saving. Complete the fileds as show below and click **upload**. This will save the blueprint to the workspace.
+Download the following blueprint  :download:`Jenkins-Troubleshooting.json<Jenkins Troubleshooting.json>`.  Select the file and continue.  A modal dialog will appear prompting for a name and project when saving. Complete the fileds as show below and click **upload**. This will save the blueprint to the workspace.
 
 - **Name:** Calm Workshop Blueprint Debug
 - **Project:** Calm
