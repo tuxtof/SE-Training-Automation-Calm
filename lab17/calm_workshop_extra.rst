@@ -43,7 +43,7 @@ Modify one of your previous blueprint to integrate interaction with external wor
 
 **Example of Slack integration script:**
 
-.. code-block:: bash
+.. code-block:: python
 
     #script
 
