@@ -5,28 +5,12 @@
 .. contents::
 
 
-**Connectivity Instructions:**
-******************************
-
-+------------+--------------------------------------------------------+
-| IP         |                                           Cluster IP   |
-+------------+--------------------------------------------------------+
-| Username   |                                           Cluster User |
-+------------+--------------------------------------------------------+
-| Password   |                                           Cluster Pass | 
-+------------+--------------------------------------------------------+
-
-**Calm Glossary**
-*****************
-
-**Service:** One tier of a multiple tier application. This can be made up of 1 more VMs (or existing machines) that all have the same config and do the same thing **Application (App):** A whole application with multiple parts that are all working towards the same thing (for example, a Web Application might be made up of an Apache Server, a MySQL database and a HAProxy Load balancer. Alone each service doesn’t do much, but as a whole they do what they’re supposed to) **Macro:** A Calm construct that is evaluated before being ran on the target machine. Macros and Variables are denoted in the *@@{[name]}@@* format in the scripts.
-
 Lab Overview
 ************
 
 In this lab participants will learn how to manage NuCalm Blueprints within the NuCalm Marketplace.  After this lab
 participants should know how to navigate and manage the Marketplace, publish blueprints to the market, deploy and/or clone
-blueprints from the marketplace. 
+blueprints from the marketplace.
 
 **Part 1: Accessing and Navigating Calm**
 *****************************************
@@ -83,22 +67,22 @@ Click the **Mongo** Blueprint Icon and then click **Clone** to copy the bluerpin
 **Part 4: Edit + Debug + Launch Cloned Blueprint**
 **************************************************
 
-Navigate the Blueprint workspace by clicking the (|image8|) icon located on the left tool ribbon.  This will open the Blueprint Workspace. 
+Navigate the Blueprint workspace by clicking the (|image8|) icon located on the left tool ribbon.  This will open the Blueprint Workspace.
 
 |image9|
 
-Click the red exclamation point to see a list fo error desriptions.  
+Click the red exclamation point to see a list fo error desriptions.
 
 |image10|
 
-Fix each of the errors listed within the Blueprint.  Once all the errors have been corrected, make additional changes to each of the **Mongo** services (i.e. VM, Package, etc...) and launch the blueprint.  Continue to make chnages until the the Blueprint successfully deploys.  
+Fix each of the errors listed within the Blueprint.  Once all the errors have been corrected, make additional changes to each of the **Mongo** services (i.e. VM, Package, etc...) and launch the blueprint.  Continue to make chnages until the the Blueprint successfully deploys.
 
 |image11|
 
 
 
 .. |image0| image:: ./media/image2.png
-   
+
 .. |image1| image:: ./media/image4.png
 
 .. |image2| image:: ./media/image5.png
@@ -120,5 +104,3 @@ Fix each of the errors listed within the Blueprint.  Once all the errors have be
 .. |image10| image:: ./media/image16.png
 
 .. |image11| image:: ./media/image17.png
-
- 
