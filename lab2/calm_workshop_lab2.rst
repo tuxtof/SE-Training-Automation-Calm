@@ -62,7 +62,7 @@ Install script with the following script:
    mkdir -p /var/www/laravel
    tee /etc/nginx/conf.d/laravel.conf << EOF
    server {
-         listen   80 default_server;
+         listen 80 default_server;
          listen [::]:80 default_server ipv6only=on;
          root /var/www/laravel/public/;
          index index.php index.html index.htm;
@@ -108,8 +108,8 @@ Install script with the following script:
    php artisan migrate
 
    chown -R nginx:nginx /var/www/laravel
-   find /var/www/html/laravel/ -type f -exec chmod 640 {} \;
-   find /var/www/html/laravel/ -type d -exec chmod 750 {} \;
+   chmod -R 777 /var/www/laravel/
+
 
    semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/laravel/storage(/.*)?"
    semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/laravel/bootstrap/cache(/.*)?"
@@ -133,8 +133,8 @@ Here you see variables like before, but also something new:
 This is a **Calm Macro**. What this does it get the IP address from
 the  **MySQL** server and replaces that in this script. With that it
 doesn’t matter what IP the DB comes up with, the PHP server will always
-know where it’s DB is. There are many more native macros ­ a full list
-will be available in documentation at launch!
+know where it’s DB is. There are many more native macros ­a full list
+is available in the documentation!
 
 Fill­in the uninstall script with the same basic exit as before:
 
