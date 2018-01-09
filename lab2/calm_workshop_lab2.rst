@@ -154,9 +154,9 @@ During save Calm analyze the Blueprint to try to automaticly detect dependency b
 
 In this part we’re going to finally finish the provisioning blueprint.  
 
-1. Click on the \ **AppService **\ service. 
+1. Click on the \ **AppService ** \ service. 
 
-2. Click on the \ **Service **\ tab. 
+2. Click on the \ **Service ** \ tab. 
 
 3. Change \ **Number of
    replicas **\ under \ **Deployment Config **\ from 1 to 2.  
@@ -164,8 +164,8 @@ In this part we’re going to finally finish the provisioning blueprint.  
 This service will now deploy 2 VMs with the same configuration rather
 than just 1
 
-We’ve now added redundancy or load balancing capacity to the PHP server,
-but need something to actually do the load balancing.
+We’ve now added redundancy to the PHP server,
+but now we need something to actually do the load balancing.
 
 1. Add another Service. This will be our load balancer, so name the
    Service **LBService**, give the substrate and VM a name and configure
@@ -233,19 +233,19 @@ Under **Package** configure the following install script:
    EOF
 
    sed -i 's/server host-/#server host-/g' /etc/haproxy/haproxy.cfg
-         hosts=$(echo "@@{AppService.address}@@" | sed 's/^,//' | sed 's/,$//' | tr "," "\n")
-         port=80
-         for host in $hosts do
-            echo "  server host­${host} ${host}:${port} weight 1 maxconn
-            100 check" | tee ­a /etc/haproxy/haproxy.cfg
-         done
+   hosts=$(echo "@@{AppService.address}@@" | sed 's/^,//' | sed 's/,$//' | tr "," "\n")
+   port=80
+   for host in $hosts do
+      echo "  server host­${host} ${host}:${port} weight 1 maxconn 100 check" | tee ­a /etc/haproxy/haproxy.cfg
+   done
 
    systemctl daemon­ reload
    systemctl restart haproxy
    yum install firewalld -y
 
-   service firewalld start
-   firewall-cmd -add-service=http --zone=public --permanent
+   systemctl enable firewalld
+   systemctl start firewalld
+   firewall-cmd --add-service=http --zone=public --permanent
    firewall-cmd --add­port=8080/tcp --zone=public --permanent
    firewall-cmd --reload
 
