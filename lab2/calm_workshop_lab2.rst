@@ -257,9 +257,13 @@ Add the following uninstall script
    #!/bin/bash
    echo "goodbye!"
 
-Your blueprint should now look like this:
+Deploy you blueprint and connect you on the LBService ip address
 
-|image8|
+http://<LBService.address>/
+
+you can also look HAproxy stats here
+
+http://<LBService.address>:8080/stats
 
 **Part 4: Next steps**
 **********************
@@ -267,7 +271,7 @@ Your blueprint should now look like this:
 In this lab we just configured the provisioning steps. Calm also does
 hybrid cloud management and lifecycle management. We also didn’t publish
 this blueprint to the marketplace. Explore these on your own, using the
-following as a guide as the ideas are the same throughout.
+following as a guide.
 
 **Custom Actions**
 
@@ -300,9 +304,6 @@ users are a member of it.
 .. |image1| image:: ./media/image2.png
    :width: 3.84792in
    :height: 4.45278in
-.. |image8| image:: ./media/image8.png
-   :width: 6.50000in
-   :height: 4.26389in
 .. |image9| image:: ./media/image9.png
    :width: 6.50000in
    :height: 3.90685in
