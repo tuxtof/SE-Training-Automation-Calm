@@ -7,15 +7,12 @@
 Lab Overview
 ************
 
-In this lab we will learn how to manage Blueprints within the NuCalm Marketplace.  After this lab
-we should know how to navigate Marketplace Management and configure the Project Environment to deploy Blueprints
-from the Marketplace.
+In this lab we will extend the capability of your blueprints.
 
 In this exercise we'll walk through the steps to:
 
-1. Publish a Blueprint from the Blueprint Workspace to the local Marketplace.
-2. Use the Marketplace Manager to approve, assign roles and projects, and publish to the Marketplace.
-3. Edit the Project Environment so the blueprint can be launched from the Marketplace as an application.
+1. Use EScript to integrate with external API.
+2. Deploy windows machine and configure it with remote powershell.
 
 **Note:** This lab assumes pariticipants have Blueprints built and staged from previous exercises.
 
