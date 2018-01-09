@@ -53,7 +53,7 @@ Try to modify one of your previous blueprint to integrate interaction with exter
 
     payload = {
       'text': 'Server @@{calm_application_name}@@ was just deployed <http://@@{calm_application_name}@@.training.local/|click here> to connect !',
-      'username': '@@{HPOC_number/Team_name}@@'
+      'username': '@@{Team_name}@@ bot'
     }
 
     r = urlreq(api_url, verb='POST', headers=headers, params=json.dumps(payload))
