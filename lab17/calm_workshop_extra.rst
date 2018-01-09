@@ -19,8 +19,6 @@ In this exercise we'll walk through the steps to:
 Part 1: Accessing and Navigating Calm
 *************************************
 
-Getting Familiar with the Tools
-
 1. Connect to https://[10.x.x.39]:9440
 2. Login to Prism using your credentials
 3. Click on the Apps tab across the top of Prism
