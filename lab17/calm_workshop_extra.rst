@@ -38,8 +38,8 @@ This script engine is based on a Python like syntax. Supported modules and funct
 Try to modify one of your previous blueprint to integrate interaction with external world, you can try to implement notification of deployment via Slack:
 
 - create an EScript Execute Task for one of your service in service create action
-- post in specific channel #xxxx (the trainer invite you to the channel) by using the EScript example below
-- improve EScript by reading `Slack Incoming Webhooks documentation`_
+- use the EScript example below to post in specific channel #xxxx (the trainer invite you to the channel, look for the pinned message inside for the hook)
+- improve EScript by reading `Slack Incoming Webhooks documentation`_ (add links and change icon for example)
 
 
 **Example of Slack integration script:**
@@ -52,7 +52,7 @@ Try to modify one of your previous blueprint to integrate interaction with exter
     api_url = "@@{SLACK_HOOK}@@"
 
     payload = {
-      'text': 'Server @@{calm_application_name}@@ was just deployed <http://@@{calm_application_name}@@.training.local/|click here> to connect !',
+      'text': 'Server @@{calm_application_name}@@ was just deployed !',
       'username': '@@{Team_name}@@ bot'
     }
 
