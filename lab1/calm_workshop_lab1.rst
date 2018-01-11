@@ -111,7 +111,7 @@ lab.
 To access variables click on the Default Application Profiles object in the application overview.
 You will find the Variable List in the Configuration Pane (on the right)
 
-Variables have 2 settings, **Secret** and **Runtime**. Normally
+Variables have 2 checkbox settings, **Secret** and **Runtime**. Normally
 variables are stored in plaintext and shown in the window here, the
 **Secret** setting changes that (perfect for passwords). **Runtime**
 specifies if this variable should be static (and only editable here) or
