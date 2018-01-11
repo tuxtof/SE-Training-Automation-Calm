@@ -89,16 +89,18 @@ Let’s get started by setting up the basics
 |image6|
 
 +-----------------------+---------------+
-| **Name **             | root          |
+| Name                  | root          |
 +-----------------------+---------------+
-| **Username **         | root          |
+| Username              | root          |
 +-----------------------+---------------+
-| **Secret **           | Password      |
+| Secret                | Password      |
 +-----------------------+---------------+
-| **Password **         | nutanix/4u    |
+| Password              | nutanix/4u    |
 +-----------------------+---------------+
-| **Use as Default **   | Checked       |
+| Use as Default        | Checked       |
 +-----------------------+---------------+
+
+***note: Default checkbox is present only if you have more than one user
 
 Setting Variables
 
