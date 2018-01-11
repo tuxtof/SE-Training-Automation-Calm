@@ -97,7 +97,7 @@ Let’s get started by setting up the basics
 +-----------------------+---------------+
 | **Password **         | nutanix/4u    |
 +-----------------------+---------------+
-| **Use as Default **   | Checked (only present if you have more than one user)      |
+| **Use as Default **   | Checked       |
 +-----------------------+---------------+
 
 Setting Variables
