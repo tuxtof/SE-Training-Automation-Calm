@@ -177,9 +177,9 @@ In this section will create a project for use with SSP & Calm
 6. Enter the following info, and click **Save**
 
 +----------------------------+----------------------------------------+
-| Name (User or Group)       |           training Users (group)       |
+| Name (User or Group) :     |           training Users (group)       |
 +----------------------------+----------------------------------------+
-| Role                       |           Developer                    |
+| Role :                     |           Developer                    |
 +----------------------------+----------------------------------------+
 
 7. Check the box for the **training** network, and make it **Default**
