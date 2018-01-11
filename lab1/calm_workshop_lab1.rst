@@ -97,7 +97,7 @@ Let’s get started by setting up the basics
 +-----------------------+---------------+
 | **Password **         | nutanix/4u    |
 +-----------------------+---------------+
-| **Use as Default **   | Checked       |
+| **Use as Default **   | Checked (only present if you have more than one user)      |
 +-----------------------+---------------+
 
 Setting Variables
@@ -145,7 +145,7 @@ With these basics setup, let’s create our first service.
 3. Name your service DBService at the top
 
 4. The Substrate section is the internal Calm name for this Service.
-   Name this **DBSubstrate.**
+   Name this **DBSubstrate.** (in the VM tab)
 
 5. Make sure that the Cloud is set to **Nutanix** and the OS set to
    **Linux**
