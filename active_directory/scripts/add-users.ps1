@@ -12,7 +12,7 @@ $successUsers = @()
 $VerbosePreference = "Continue"
 $LogFolder = "c:\scripts\logs"
 $GroupName = "Bootcamp Users"
-$OU = "CN=Users, DC=BOOTCAMP,DC=LOCAL"
+$OU = "CN=Users, DC=TRAINING,DC=LOCAL"
 
 NEW-ADGroup -name $GroupName –GroupScope Global
 
