@@ -123,7 +123,7 @@ Change Prism Central UI Settings
 | Values                     |           user01                       |
 +----------------------------+----------------------------------------+
 
-6. Close the Role Mapping and Authentication windows
+6. Click save in the Role Mapping and Authentication windows
 7. Log out of Prism Central
 8. Log in as **user01@training.local**
 9. Once you validate you can log in as user01, log out
