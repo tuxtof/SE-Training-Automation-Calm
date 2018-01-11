@@ -125,7 +125,7 @@ In this step we will run a powershell script that will create the "training User
 (also adding them to the training Users group)
 
 **Copy the contents of the following script and csv, and create the files on the Server in "C:\\scripts"**
-add-users.ps1_ and add-users.csv_
+add-users.ps1 and add-users.csv
 
 1. Log into the DC VM with a Remote Desktop connection
 2. create a directory called "scripts" at the root of C:
