@@ -130,7 +130,7 @@ add-users.ps1 and add-users.csv
 1. Log into the DC VM with a Remote Desktop connection
 2. create a directory called "scripts" at the root of C:
 3. Create a directory called "logs" in "c:\\scripts"
-4. Create the add-users.ps1 and add-users.csv to "C:\\scripts" based on code below
+4. Create the add-users.ps1 and add-users.csv in "C:\\scripts" based on code below
 
 .. code-block:: bash
 
