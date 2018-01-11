@@ -21,7 +21,7 @@ Part 1: Accessing Calm
 
 
 1. Connect to https://[10.x.x.39]:9440
-2. Login to Prism with your credentials
+2. Login to Prism Central with admin user and using the HPOC credentials
 3. Click on the Apps tab across the top of Prism
 
 Part 2: Import Blueprint
