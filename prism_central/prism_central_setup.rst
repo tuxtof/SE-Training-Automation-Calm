@@ -98,13 +98,13 @@ Change Prism Central UI Settings
 +----------------------------+----------------------------------------+
 | Directory Type             |           Active Directory             |
 +----------------------------+----------------------------------------+
-| Name                       |           training                     |
+| Name                       |           poclab                       |
 +----------------------------+----------------------------------------+
-| Domain                     |           training.local               |
+| Domain                     |           poclab.local                 |
 +----------------------------+----------------------------------------+
 | Directory URL              |           ldap://10.x.x.40             |
 +----------------------------+----------------------------------------+
-| Service Account Name       |           administrator@training.local |
+| Service Account Name       |           administrator@poclab.local   |
 +----------------------------+----------------------------------------+
 | Service Account Password   |           HPOC Password                |
 +----------------------------+----------------------------------------+
@@ -114,7 +114,7 @@ Change Prism Central UI Settings
 5. Click **New Mapping**
 
 +----------------------------+----------------------------------------+
-| Directory                  |           training                     |
+| Directory                  |           poclab                       |
 +----------------------------+----------------------------------------+
 | LDAP Type                  |           user                         |
 +----------------------------+----------------------------------------+
@@ -125,7 +125,7 @@ Change Prism Central UI Settings
 
 6. Click save in the Role Mapping and Authentication windows
 7. Log out of Prism Central
-8. Log in as **user01@training.local**
+8. Log in as **user01@poclab.local**
 9. Once you validate you can log in as user01, log out
 10. Log back into Prism Central as admin
 
@@ -141,7 +141,7 @@ In this section we will configure Self-Service Portal (SSP)
 +--------------------------+------------------------------------------+
 | Select Active Directory  |            training                      |
 +--------------------------+------------------------------------------+
-| Username                 |            administrator@training.local  |
+| Username                 |            administrator@poclab.local    |
 +--------------------------+------------------------------------------+
 | Password                 |            HPOC Password                 |
 +--------------------------+------------------------------------------+

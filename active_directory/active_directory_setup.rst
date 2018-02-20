@@ -105,7 +105,7 @@ In this step we will be configuring Active Directory for use by our Workshop
 4. Select "Add a new forest", Enter "Root domain name", and then click **Next**
 
 +-------------------+------------------------------------------------+
-| Root domain name  |                                training.local  |
+| Root domain name  |                                  poclab.local  |
 +-------------------+------------------------------------------------+
 
 5. DSRM Password = HPOC Password - hit **Next**
