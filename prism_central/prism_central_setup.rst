@@ -143,7 +143,7 @@ In this section we will configure Self-Service Portal (SSP)
 +--------------------------+------------------------------------------+
 | Username                 |            administrator@poclab.local    |
 +--------------------------+------------------------------------------+
-| Password                 |            HPOC Password                 |
+| Password                 |            nutanix/4u                    |
 +--------------------------+------------------------------------------+
 
 3. Click on **Add Admins**, and add the "Administrators (group)" group. Click **Save**
@@ -177,12 +177,12 @@ In this section will create a project for use with SSP & Calm
 6. Enter the following info, and click **Save**
 
 +----------------------------+----------------------------------------+
-| Name (User or Group) :     |           training Users (group)       |
+| Name (User or Group) :     |           SSP Developers (group)       |
 +----------------------------+----------------------------------------+
 | Role :                     |           Developer                    |
 +----------------------------+----------------------------------------+
 
-7. Check the box for the **training** network, and make it **Default**
+7. Check the box for the **bootcamp** network, and make it **Default**
 8. Quotas (Optional)
 9. Click **Save**
 
