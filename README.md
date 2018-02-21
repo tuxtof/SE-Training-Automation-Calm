@@ -2,6 +2,8 @@
 
 Info needed for setup HPOC environment for this training
 
+If the lab was already prepared, you can go directly to the step 3 of the [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
+
 - [Setup Prism Element (HPOC)](./prism_element/prism_element_setup.rst)
 - [Setup Active Directory](./active_directory/active_directory_setup.rst)
 - [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
