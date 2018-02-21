@@ -102,11 +102,11 @@ Change Prism Central UI Settings
 +----------------------------+----------------------------------------+
 | Domain                     |           poclab.local                 |
 +----------------------------+----------------------------------------+
-| Directory URL              |           ldap://10.x.x.40             |
+| Directory URL              |           ldaps://10.x.x.40            |
 +----------------------------+----------------------------------------+
 | Service Account Name       |           administrator@poclab.local   |
 +----------------------------+----------------------------------------+
-| Service Account Password   |           HPOC Password                |
+| Service Account Password   |           nutanix/4u                   |
 +----------------------------+----------------------------------------+
 
 3. Click on the yellow ! next to training
@@ -120,7 +120,7 @@ Change Prism Central UI Settings
 +----------------------------+----------------------------------------+
 | Role                       |           Cluster Admin                |
 +----------------------------+----------------------------------------+
-| Values                     |           user01                       |
+| Values                     |           adminuser01                  |
 +----------------------------+----------------------------------------+
 
 6. Click save in the Role Mapping and Authentication windows
@@ -139,7 +139,7 @@ In this section we will configure Self-Service Portal (SSP)
 2. Fill in the following info under Connect to AD, and then click **Next**:
 
 +--------------------------+------------------------------------------+
-| Select Active Directory  |            training                      |
+| Select Active Directory  |            poclab                        |
 +--------------------------+------------------------------------------+
 | Username                 |            administrator@poclab.local    |
 +--------------------------+------------------------------------------+
