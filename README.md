@@ -2,16 +2,16 @@
 
 Info needed for setup HPOC environment for this training
 
-The lab was already prepared, DC & PC Install
+The lab was already prepared, DC & PC Installed
 
 - PC is 10.21.X.39
 - DC is 10.21.X.40
 
 DC information :
 
-Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
-Password :    nutanix/4u 
-Group :       SSP Admins     | SSP Developers | SSP Power Users | SSP Basic Users
+- Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
+- Password :    nutanix/4u 
+- Group :       SSP Admins     | SSP Developers | SSP Power Users | SSP Basic Users
 
 - [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
 
