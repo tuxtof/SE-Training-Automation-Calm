@@ -24,4 +24,3 @@ Start by finishing SSP & Calm configuration
 - [Lab: NuCalm Blueprint Troubleshooting](./lab3/calm_workshop_lab3_troubleshooting.rst)
 - [Lab: NuCalm Marketplace part 1](./lab4/calm_workshop_lab4_marketplace.rst)
 - [Lab: NuCalm Marketplace part 2](./lab8/calm_workshop_lab8_marketplace.rst)
-- [Lab: NuCalm extra](./lab17/calm_workshop_extra.rst)
