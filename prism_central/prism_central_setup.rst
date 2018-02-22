@@ -78,7 +78,7 @@ Change Prism Central UI Settings
 
 In this section we will configure Self-Service Portal (SSP)
 
-1. Go to Help --> Self-Service Admin Management
+1. Go to Help (? icon top right) --> Self-Service & Apps setup
 2. Fill in the following info under Connect to AD, and then click **Next**:
 
 +--------------------------+------------------------------------------+
@@ -89,8 +89,8 @@ In this section we will configure Self-Service Portal (SSP)
 | Password                 |            nutanix/4u                    |
 +--------------------------+------------------------------------------+
 
-3. Click on **Add Admins**, and add the "Administrators (group)" group. Click **Save**
-4. Click **Save**
+3. Click on **Add Admins**, and add the "Administrators (group)" group. Click **Next**
+4. Click **Next**
 
 
 **Step 4 — Enable App Management**
@@ -98,13 +98,12 @@ In this section we will configure Self-Service Portal (SSP)
 
 In this section we will enable the Apps tab (Calm) of Prism Central
 
-1. Go to Gear --> Enable App Management
-2. Check the box for **Enable App Management**
-3. Verify the box is checked for **Enable Nutanix Seeded Blueprints**
-4. Click **Save**
-5. Monitor Recent Tasks, and watch for the "Volume Group", "Volume Disk", and "Batch Configure" Tasks to complete
-6. Click on the **Apps** Tab in the Top Navigation Ribbon
-7. If you see the Calm UI you are done
+1. Check the box for **Enable App Management**
+2. Verify the box is checked for **Enable Nutanix Seeded Blueprints**
+3. Click **Next**
+4. Monitor Recent Tasks, and watch for the "Volume Group", "Volume Disk", and "Batch Configure" Tasks to complete
+5. Click on the **Apps** Tab in the Top Navigation Ribbon
+6. If you see the Calm UI you are done
 
 
 **Step 5 — Create Project for use in Calm**
