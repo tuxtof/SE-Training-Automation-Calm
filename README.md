@@ -4,8 +4,8 @@ Info needed for setup HPOC environment for this training
 
 The lab was already prepared, DC & PC Install
 
-.PC is 10.21.X.39
-.DC is 10.21.X.40
+- PC is 10.21.X.39
+- DC is 10.21.X.40
 
 DC information :
 
