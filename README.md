@@ -4,10 +4,10 @@ Info needed for setup HPOC environment for this training
 
 The lab was already prepared, DC & PC Install
 
-PC is 10.21.X.39
-DC is 10.21.X.40
+.PC is 10.21.X.39
+.DC is 10.21.X.40
 
-DC information
+DC information :
 
 Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
 Password :    nutanix/4u 
