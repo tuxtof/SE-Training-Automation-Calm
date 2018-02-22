@@ -2,10 +2,17 @@
 
 Info needed for setup HPOC environment for this training
 
-If the lab was already prepared, you can go directly to the step 3 of the [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
+The lab was already prepared, DC & PC Install
 
-- [Setup Prism Element (HPOC)](./prism_element/prism_element_setup.rst)
-- [Setup Active Directory](./active_directory/active_directory_setup.rst)
+PC is 10.21.X.39
+DC is 10.21.X.40
+
+DC information
+
+Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
+Password :    nutanix/4u 
+Group :       SSP Admins     | SSP Developers | SSP Power Users | SSP Basic Users
+
 - [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
 
 # Calm training modules
