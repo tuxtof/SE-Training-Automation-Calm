@@ -20,64 +20,7 @@
 In this guide we will configure Prism Central for the HPOC you have checked out. This includes SSP and Calm (Apps).
 
 
-**Configure Prism Central for Workshop**
-****************************************
-
-We will start by installing prism Central
-
-
-**Step 1 — Install Prism Central**
-**********************************
-
-1. Click on **Register or create new** on the Prism Central Widget (On the main Cluster page)
-2. Click on **Deploy** in the "I want to deploy a new Prims Central instance" box
-3. 5.5.x must be showed under available version (we already upload it), so just click **Install** next to 5.5.x.
-4. If it does not show up, the you will need to click on **upload the Prism Central binary** (The tar & json files are available on Nutanix Portal)
-5. Input the following info, and then click **Deploy**:
-
-+--------------------------+------------------------------------------+
-| VM Name                  |                             PC           |
-+--------------------------+------------------------------------------+
-| Container                |                             training     |
-+--------------------------+------------------------------------------+
-| VM Sizing                |                             Large        |
-+--------------------------+------------------------------------------+
-| AHV Network              |                             training     |
-+--------------------------+------------------------------------------+
-| IP Address               |                             10.x.x.39    |
-+--------------------------+------------------------------------------+
-
-**Note:** PC Large sizing is highly recommended with Calm in order to have good performance.
-
-7. In a separate browser tab, got to https://10.x.x.39:9440
-8. Log in with admin / Nutanix/4u
-9. Change password to HPOC Password
-10. Continue log in with admin / HPOC Password
-11. Accept the EULA
-
-
-**Step 2 — Register Prism Central**
-***********************************
-
-1. Go to the Prism Element browser tab
-2. Click on **Register or create new** on the Prism Central Widget (On the main Cluster page)
-3. Click on **Connect** in the "I already have a Prism Central instance deployed" box
-4. Click **Next**
-5. Enter the following info, and then Click **Connect**:
-
-+--------------------------+------------------------------------------+
-| Prism Central IP         |                          10.x.x.39       |
-+--------------------------+------------------------------------------+
-| Username                 |                          admin           |
-+--------------------------+------------------------------------------+
-| Password                 |                          HPOC Password   |
-+--------------------------+------------------------------------------+
-
-6. You should now see **OK** int he Prism Central Widget (On the main Cluster page)
-7. You could verify that your cluster is visible in the Prism Central interface, for exemple in the Cluster Quick Access widget
-
-
-**Step 3 — PC UI Settings**
+**Step 1 — PC UI Settings**
 ***************************
 
 Change Prism Central UI Settings
@@ -89,7 +32,7 @@ Change Prism Central UI Settings
 5. Session Timeout override = Allow unlimited
 
 
-**Step 4 — Setup Authentication and Role Mapping**
+**Step 2 — Setup Authentication and Role Mapping**
 **************************************************
 
 1. Go To Gear --> Authentication
@@ -102,7 +45,7 @@ Change Prism Central UI Settings
 +----------------------------+----------------------------------------+
 | Domain                     |           poclab.local                 |
 +----------------------------+----------------------------------------+
-| Directory URL              |           ldaps://10.x.x.40            |
+| Directory URL              |           ldaps://10.21.x.40           |
 +----------------------------+----------------------------------------+
 | Service Account Name       |           administrator@poclab.local   |
 +----------------------------+----------------------------------------+
@@ -130,12 +73,12 @@ Change Prism Central UI Settings
 10. Log back into Prism Central as admin
 
 
-**Step 5 — Configure Self-Service Admin Management**
+**Step 3 — Configure Self-Service Admin Management**
 ****************************************************
 
 In this section we will configure Self-Service Portal (SSP)
 
-1. Go to Gear --> Self-Service Admin Management
+1. Go to Help --> Self-Service Admin Management
 2. Fill in the following info under Connect to AD, and then click **Next**:
 
 +--------------------------+------------------------------------------+
@@ -150,7 +93,7 @@ In this section we will configure Self-Service Portal (SSP)
 4. Click **Save**
 
 
-**Step 6 — Enable App Management**
+**Step 4 — Enable App Management**
 **********************************
 
 In this section we will enable the Apps tab (Calm) of Prism Central
@@ -164,7 +107,7 @@ In this section we will enable the Apps tab (Calm) of Prism Central
 7. If you see the Calm UI you are done
 
 
-**Step 7 — Create Project for use in Calm**
+**Step 5 — Create Project for use in Calm**
 *******************************************
 
 In this section will create a project for use with SSP & Calm
