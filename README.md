@@ -9,9 +9,13 @@ The lab was already prepared, DC & PC Installed
 
 DC information :
 
-- Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
-- Password :    nutanix/4u 
-- Group :       SSP Admins     | SSP Developers | SSP Power Users | SSP Basic Users
+Username(s) : adminuser01-05 | devuser01-05   | poweruser01-05  | basicuser01-05
+
+Password :    nutanix/4u 
+
+Group :       SSP Admins     | SSP Developers | SSP Power Users | SSP Basic Users
+
+Start by finishing SSP & Calm configuration
 
 - [Prism Central Setup Guide](./prism_central/prism_central_setup.rst)
 
